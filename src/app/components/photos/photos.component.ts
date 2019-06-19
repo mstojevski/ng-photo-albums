@@ -23,7 +23,7 @@ export class PhotosComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-  onRemove(id) {
+  onRemove(id: number) {
     this.photoService.removePhoto(id);
     console.log("this.http.delete(URL/id)");
   }
