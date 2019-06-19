@@ -11,9 +11,17 @@ import { UserAlbum } from "src/app/model/userAlbum";
 })
 export class AlbumsComponent implements OnInit {
   userAlbums$: Observable<UserAlbum[]>;
+  searchTerm: string;
+  breakpoint: number;
 
   constructor(private userAlbum: UserAlbumsService) {}
   ngOnInit() {
+    // Grid responsive
+    this.breakpoint = window.innerWidth <= 768 ? 1 : 3;
     this.userAlbums$ = this.userAlbum.load();
+  }
+  // onResize for responsive grid
+  onResize(event) {
+    this.breakpoint = event.target.innerWidth <= 768 ? 1 : 3;
   }
 }

@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
 import { Photo } from "../model/Photo";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class PhotosService {
   constructor(private http: HttpClient) {}
-
+  private readonly API_URL = environment.url;
   private _photos = new BehaviorSubject<Photo[]>([]);
   photos$ = this._photos.asObservable();
 
@@ -20,9 +21,7 @@ export class PhotosService {
   }
 
   getAllPhotos() {
-    this.photos$ = this.http.get<Photo[]>(
-      "https://jsonplaceholder.typicode.com/photos"
-    );
+    this.photos$ = this.http.get<Photo[]>(`${this.API_URL}/photos`);
   }
 
   removePhoto(photoId: number) {

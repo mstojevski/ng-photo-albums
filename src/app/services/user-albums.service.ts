@@ -31,7 +31,7 @@ export class UserAlbumsService {
       map(([usersTable, albums]) =>
         albums.map(album => ({
           title: album.title,
-          // id: album.id,
+          id: album.id,
           user: usersTable[album.userId]
         }))
       ),

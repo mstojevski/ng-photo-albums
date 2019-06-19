@@ -1,19 +1,16 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Album } from "../model/Album";
-
-const API_URL = "https://jsonplaceholder.typicode.com";
+import { environment } from "../../environments/environment";
 @Injectable({
   providedIn: "root"
 })
 export class AlbumsService {
+  private readonly API_URL = environment.url;
   constructor(private http: HttpClient) {}
 
   getAlbums(): Observable<Album[]> {
-    return this.http
-      .get(`${API_URL}/albums`)
-      .pipe(map((data: any) => data as Album[]));
+    return this.http.get<Album[]>(`${this.API_URL}/albums`);
   }
 }

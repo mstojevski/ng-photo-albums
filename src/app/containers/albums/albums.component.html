@@ -1,10 +1,13 @@
-<!-- <p *ngFor="let item of (userAlbums$ | async)">
-      {{item | json }}
-    </p> -->
-
   <div class="albums">
-    <mat-grid-list cols="3" gutterSize="30px">
-      <mat-grid-tile *ngFor="let item of (userAlbums$ | async)">
+      <form class="search-form">
+      <mat-form-field class="search-full-width">
+        <!-- [(ngModel)]="searchTerm" -->
+        <input matInput placeholder="Search Albums" >
+      </mat-form-field>
+    </form>
+
+    <mat-grid-list  gutterSize="30px" [cols]="breakpoint" (window:resize)="onResize($event)">
+      <mat-grid-tile *ngFor="let item of userAlbums$ | filter:searchTerm | async ">
           <pha-album  [title]="item.title" [author]="item.user.name"></pha-album>
       </mat-grid-tile>
     </mat-grid-list>

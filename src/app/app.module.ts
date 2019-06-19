@@ -1,18 +1,16 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatCardModule } from "@angular/material/card";
-import { MatGridListModule } from "@angular/material/grid-list";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AlbumsComponent } from "./containers/albums/albums.component";
 import { PhotosComponent } from "./components/photos/photos.component";
 import { PhotoComponent } from "./components/photo/photo.component";
 import { AlbumComponent } from "./components/album/album.component";
-import { MatButtonModule } from "@angular/material/button";
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FilterPipe } from "./pipes/filter.pipe";
+import { FormsModule } from "@angular/forms";
+import { MaterialModule } from "./material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,17 +18,16 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     AlbumsComponent,
     PhotosComponent,
     PhotoComponent,
-    AlbumComponent
+    AlbumComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatGridListModule,
-    MatButtonModule,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
