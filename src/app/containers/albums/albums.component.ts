@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { AlbumComponent } from "../../components/album/album.component";
 import { UserAlbumsService } from "src/app/services/user-albums.service";
 import { Observable } from "rxjs";
@@ -7,7 +7,8 @@ import { UserAlbum } from "src/app/model/userAlbum";
 @Component({
   selector: "pha-albums",
   templateUrl: "./albums.component.html",
-  styleUrls: ["./albums.component.css"]
+  styleUrls: ["./albums.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumsComponent implements OnInit {
   userAlbums$: Observable<UserAlbum[]>;

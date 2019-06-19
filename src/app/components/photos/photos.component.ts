@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { PhotosService } from "src/app/services/photos.service";
@@ -6,7 +6,8 @@ import { PhotosService } from "src/app/services/photos.service";
 @Component({
   selector: "pha-photos",
   templateUrl: "./photos.component.html",
-  styleUrls: ["./photos.component.css"]
+  styleUrls: ["./photos.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotosComponent implements OnInit {
   albumPhotos$;

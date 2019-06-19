@@ -6,16 +6,14 @@ import { filter } from "rxjs/operators";
   name: "filter"
 })
 export class FilterPipe implements PipeTransform {
-  transform(albums$, searchTerm: string): Observable<Album[]> {
-    if (!albums$ || !searchTerm) {
-      return albums$;
+  transform(array, searchTerm: string): any[] {
+    if (!array || !searchTerm) {
+      return array;
     }
 
-    return albums$.pipe(
-      filter(
-        (album: Album) =>
-          album.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-      )
+    return array.filter(
+      (item: any) =>
+        item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
     );
   }
 }

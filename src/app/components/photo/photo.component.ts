@@ -1,9 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from "@angular/core";
 
 @Component({
   selector: "pha-photo",
   templateUrl: "./photo.component.html",
-  styleUrls: ["./photo.component.css"]
+  styleUrls: ["./photo.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoComponent implements OnInit {
   @Input() thumbnail;

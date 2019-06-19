@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
 import { Photo } from "../model/Photo";
 import { environment } from "../../environments/environment";
-import { map, tap, switchMap } from "rxjs/operators";
+import { map, tap, switchMapTo } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -29,17 +29,15 @@ export class PhotosService {
   removePhoto(photoId: number) {
     this.photos = this.photos.filter((photo: Photo) => photo.id !== photoId);
   }
-  // refactor this
   getPhotosFromAlbum(albumId: number) {
     return this.getAllPhotos().pipe(
-      map(data => {
-        let arrData = data as Photo[];
-        return arrData.filter(item => item.albumId === albumId);
+      map((photos: Photo[]) =>
+        photos.filter(photo => photo.albumId === albumId)
+      ),
+      tap(photos => {
+        this.photos = photos;
       }),
-      tap((state: any) => {
-        this._photos.next(state);
-      }),
-      switchMap(() => this.photos$)
+      switchMapTo(this.photos$)
     );
   }
 }

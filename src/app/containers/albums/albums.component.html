@@ -2,12 +2,12 @@
       <form class="search-form">
       <mat-form-field class="search-full-width">
         <!-- [(ngModel)]="searchTerm" -->
-        <input matInput placeholder="Search Albums">
+        <input matInput placeholder="Search Albums" #searchTerm>
       </mat-form-field>
     </form>
 
     <mat-grid-list  gutterSize="30px" [cols]="breakpoint" (window:resize)="onResize($event)">
-      <mat-grid-tile *ngFor="let item of (userAlbums$ | async)">
+      <mat-grid-tile *ngFor="let item of ((userAlbums$ | async) | filter:searchTerm.value)">
           <pha-album  [id]="item.id" [title]="item.title" [author]="item.user.name"></pha-album>
       </mat-grid-tile>
     </mat-grid-list>

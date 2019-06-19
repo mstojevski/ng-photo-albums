@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AlbumsService } from "./albums.service";
 import { UsersService } from "./users.service";
-import { map, tap, switchMap } from "rxjs/operators";
-import { BehaviorSubject, zip } from "rxjs";
+import { map } from "rxjs/operators";
+import { zip } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -12,9 +12,6 @@ export class UserAlbumsService {
     private albumsService: AlbumsService,
     private usersService: UsersService
   ) {}
-
-  private _state = new BehaviorSubject([]);
-  state$ = this._state.asObservable();
 
   load() {
     const albums$ = this.albumsService.getAlbums();
@@ -34,11 +31,7 @@ export class UserAlbumsService {
           id: album.id,
           user: usersTable[album.userId]
         }))
-      ),
-      tap((state: any) => {
-        this._state.next(state);
-      }),
-      switchMap(() => this.state$)
+      )
     );
   }
 }
