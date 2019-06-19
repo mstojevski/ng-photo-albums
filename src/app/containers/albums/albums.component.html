@@ -1,7 +1,11 @@
-<div class="albums">
-  <mat-grid-list cols="4" gutterSize="30">
-    <mat-grid-tile >
-        <pha-album></pha-album>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<!-- <p *ngFor="let item of (userAlbums$ | async)">
+      {{item | json }}
+    </p> -->
+
+  <div class="albums">
+    <mat-grid-list cols="3" gutterSize="30px">
+      <mat-grid-tile *ngFor="let item of (userAlbums$ | async)">
+          <pha-album  [title]="item.title" [author]="item.user.name"></pha-album>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
