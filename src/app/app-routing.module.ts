@@ -5,7 +5,7 @@ import { PhotosComponent } from "./components/photos/photos.component";
 
 const routes: Routes = [
   { path: "", component: AlbumsComponent },
-  { path: "album/:photoId", component: PhotosComponent }
+  { path: "album/:albumId", component: PhotosComponent }
 ];
 
 @NgModule({

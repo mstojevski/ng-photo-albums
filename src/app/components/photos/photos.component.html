@@ -5,9 +5,6 @@
         <input matInput placeholder="Search Photos">
       </mat-form-field>
     </form>
-  <pha-photo (remove)="onRemove()"></pha-photo>
-  <pha-photo (remove)="onRemove()"></pha-photo>
-  <pha-photo (remove)="onRemove()"></pha-photo>
-  <pha-photo (remove)="onRemove()"></pha-photo>
+  <pha-photo *ngFor="let photo of albumPhotos$ | async" [title]="photo.title" [thumbnail]="photo.thumbnailUrl" (remove)="onRemove(photo.id)"></pha-photo>
 </div>
 

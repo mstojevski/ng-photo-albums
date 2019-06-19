@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
+import { ActivatedRoute } from "@angular/router";
+import { PhotosService } from "src/app/services/photos.service";
 
 @Component({
   selector: "pha-photos",
@@ -7,15 +9,22 @@ import { Location } from "@angular/common";
   styleUrls: ["./photos.component.css"]
 })
 export class PhotosComponent implements OnInit {
-  constructor(private location: Location) {}
-
-  ngOnInit() {}
+  albumPhotos$;
+  constructor(
+    private location: Location,
+    private route: ActivatedRoute,
+    private photoService: PhotosService
+  ) {}
+  ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get("albumId");
+    this.albumPhotos$ = this.photoService.getPhotosFromAlbum(id);
+  }
 
   goBack() {
     this.location.back();
   }
-  onRemove(event) {
-    console.log(event);
+  onRemove(id) {
+    this.photoService.removePhoto(id);
     console.log("this.http.delete(URL/id)");
   }
 }

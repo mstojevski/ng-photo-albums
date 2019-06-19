@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from "@angular/core";
 export class AlbumComponent implements OnInit {
   @Input() title;
   @Input() author;
+  @Input() id;
   constructor() {}
 
   ngOnInit() {}

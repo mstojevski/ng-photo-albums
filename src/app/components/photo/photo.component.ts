@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 export class PhotoComponent implements OnInit {
   @Input() thumbnail;
   @Input() title;
-  @Output() remove = new EventEmitter();
+  @Output() remove: EventEmitter<number> = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit() {}

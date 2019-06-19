@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
 import { Photo } from "../model/Photo";
 import { environment } from "../../environments/environment";
+import { map, filter } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +11,8 @@ import { environment } from "../../environments/environment";
 export class PhotosService {
   constructor(private http: HttpClient) {}
   private readonly API_URL = environment.url;
-  private _photos = new BehaviorSubject<Photo[]>([]);
+
+  private readonly _photos = new BehaviorSubject<Photo[]>([]);
   photos$ = this._photos.asObservable();
 
   get photos(): Photo[] {
@@ -21,11 +23,20 @@ export class PhotosService {
   }
 
   getAllPhotos() {
-    this.photos$ = this.http.get<Photo[]>(`${this.API_URL}/photos`);
+    return this.http.get<Photo[]>(`${this.API_URL}/photos`);
   }
 
   removePhoto(photoId: number) {
-    this.photos = this.photos.filter(photo => photo.id !== photoId);
-    console.log("Photo is deleted");
+    this.photos = this.photos.filter((photo: Photo) => photo.id !== photoId);
+
+    // console.log("Photo is deleted");
+  }
+  getPhotosFromAlbum(albumId: number) {
+    return this.getAllPhotos().pipe(
+      map(data => {
+        let arrData = data as Photo[];
+        return arrData.filter(item => item.albumId === albumId);
+      })
+    );
   }
 }
