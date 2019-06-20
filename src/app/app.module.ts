@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AlbumsComponent } from "./containers/albums/albums.component";
-import { PhotosComponent } from "./components/photos/photos.component";
+import { PhotosComponent } from "./containers/photos/photos.component";
 import { PhotoComponent } from "./components/photo/photo.component";
 import { AlbumComponent } from "./components/album/album.component";
 import { FilterPipe } from "./pipes/filter.pipe";

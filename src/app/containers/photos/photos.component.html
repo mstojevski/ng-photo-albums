@@ -1,0 +1,10 @@
+<div class="container photos">
+  <button (click)="goBack()" mat-raised-button color="primary">Back</button>
+   <form class="search-form">
+      <mat-form-field class="search-full-width">
+        <input matInput placeholder="Search Photos" #search>
+      </mat-form-field>
+    </form>
+  <pha-photo *ngFor="let photo of albumPhotos$ | async | filter:search.value" [title]="photo.title" [thumbnail]="photo.thumbnailUrl" (remove)="onRemove(photo.id)"></pha-photo>
+</div>
+

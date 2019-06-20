@@ -14,8 +14,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoComponent implements OnInit {
-  @Input() thumbnail;
-  @Input() title;
+  @Input() thumbnail: string;
+  @Input() title: string;
   @Output() remove: EventEmitter<number> = new EventEmitter<number>();
   constructor() {}
 

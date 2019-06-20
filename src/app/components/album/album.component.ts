@@ -8,13 +8,12 @@ import {
 @Component({
   selector: "pha-album",
   templateUrl: "./album.component.html",
-  styleUrls: ["./album.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumComponent implements OnInit {
-  @Input() title;
-  @Input() author;
-  @Input() id;
+  @Input() title: string;
+  @Input() author: string;
+  @Input() id: number;
   constructor() {}
 
   ngOnInit() {}
